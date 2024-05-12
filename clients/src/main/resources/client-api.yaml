@@ -1,0 +1,55 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Clients
+  description: ''
+  contact:
+    email: afjimene@gmail.com
+paths:
+  /client:
+    post:
+      tags:
+        - clients
+      summary: Create a new client
+      description: Create a new client using full information
+      operationId: createClient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        "405":
+          description: Invalid input
+components:
+  schemas:
+    Client:
+      type: object
+      required:
+        - idType
+        - idNumber
+        - names
+        - surnames
+        - email
+        - birthDate
+      properties:
+        idType:
+          type: number
+        idNumber:
+          type: number
+        names:
+          type: string
+        surnames:
+          type: string
+        email:
+          type: string
+        birthDate:
+          type: string
+          format: date
