@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Transactions
+  description: ''
+  contact:
+    email: afjimene@gmail.com
+paths:
+  /withdrawal:
+    post:
+      tags:
+        - transactions
+      summary: Create a new transaction
+      description: Create a new transaction using full information
+      operationId: withdrawal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Withdrawal'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Withdrawal'
+        "405":
+          description: Invalid input
+components:
+  schemas:
+    Withdrawal:
+      type: object
+      required:
+        - accountType
+        - accountNumber
+        - amount
+      properties:
+        accountType:
+          type: string
+        accountNumber:
+          type: string
+        amount:
+          type: number
