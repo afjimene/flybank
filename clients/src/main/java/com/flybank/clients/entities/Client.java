@@ -12,14 +12,14 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    Short idType;
-    Long idNumber;
+    String idType;
+    String idNumber;
     @NotBlank(message = "Names are required")
     String names;
     @NotBlank(message = "Surname is required")
     String surnames;
     String email;
-    Date birthDate;
+    String birthDate;
 
     public Long getId() {
         return id;
@@ -29,19 +29,19 @@ public class Client {
         this.id = id;
     }
 
-    public Short getIdType() {
+    public String getIdType() {
         return idType;
     }
 
-    public void setIdType(Short idType) {
+    public void setIdType(String idType) {
         this.idType = idType;
     }
 
-    public Long getIdNumber() {
+    public String getIdNumber() {
         return idNumber;
     }
 
-    public void setIdNumber(Long idNumber) {
+    public void setIdNumber(String idNumber) {
         this.idNumber = idNumber;
     }
 
@@ -69,11 +69,11 @@ public class Client {
         this.email = email;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 }

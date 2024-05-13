@@ -4,7 +4,7 @@ import com.flybank.clients.entities.Client;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ClientMapper {
 
     ClientMapper INSTANCE = Mappers.getMapper( ClientMapper.class );
