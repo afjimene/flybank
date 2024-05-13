@@ -40,6 +40,12 @@
 			<version>8.0.32</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>1.5.3.Final</version>
+		</dependency>
+
 		<!-- SpringDoc dependencies -->
 		<dependency>
 			<groupId>org.springdoc</groupId>

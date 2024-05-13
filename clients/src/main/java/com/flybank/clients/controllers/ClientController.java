@@ -2,6 +2,7 @@ package com.flybank.clients.controllers;
 
 import com.flybank.clients.api.handler.ClientApi;
 import com.flybank.clients.api.model.Client;
+import com.flybank.clients.mapper.ClientMapper;
 import com.flybank.clients.services.ClientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,8 +19,8 @@ public class ClientController implements ClientApi {
     @Override
     public ResponseEntity<Client> createClient(Client body) {
         //Map body to client entity
-        //var client = clientService.createClient(body);
+        var client = clientService.createClient(ClientMapper.INSTANCE.clientToClientDto(body));
         //Map response to client api
-        return null;
+        return ResponseEntity.ok(ClientMapper.INSTANCE.clientDtoToClient(client));
     }
 }
