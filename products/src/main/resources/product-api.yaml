@@ -1,0 +1,49 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Products
+  description: ''
+  contact:
+    email: afjimene@gmail.com
+paths:
+  /product:
+    post:
+      tags:
+        - products
+      summary: Create a new product
+      description: Create a new product using full information
+      operationId: createProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        "405":
+          description: Invalid input
+components:
+  schemas:
+    Product:
+      type: object
+      required:
+        - accountType
+        - accountNumber
+        - exentGMF
+        - clientId
+      properties:
+        accountType:
+          type: string
+        accountNumber:
+          type: string
+        exentGMF:
+          type: boolean
+        clientId:
+          type: integer
+          format: int64

@@ -3,8 +3,6 @@ package com.flybank.clients.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
-import java.util.Date;
-
 @Entity
 @Table(name = "client")
 public class Client {
