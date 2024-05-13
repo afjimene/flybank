@@ -2,6 +2,10 @@ package com.flybank.clients.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "client")
@@ -11,13 +15,19 @@ public class Client {
     Long id;
 
     String idType;
-    String idNumber;
+    Integer idNumber;
     @NotBlank(message = "Names are required")
     String names;
     @NotBlank(message = "Surname is required")
     String surnames;
     String email;
     String birthDate;
+
+    @CreationTimestamp
+    private LocalDateTime createDateTime;
+
+    @UpdateTimestamp
+    private LocalDateTime updateDateTime;
 
     public Long getId() {
         return id;
@@ -35,11 +45,11 @@ public class Client {
         this.idType = idType;
     }
 
-    public String getIdNumber() {
+    public Integer getIdNumber() {
         return idNumber;
     }
 
-    public void setIdNumber(String idNumber) {
+    public void setIdNumber(Integer idNumber) {
         this.idNumber = idNumber;
     }
 

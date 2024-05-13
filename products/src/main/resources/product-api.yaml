@@ -34,14 +34,14 @@ components:
       type: object
       required:
         - accountType
-        - accountNumber
         - exentGMF
         - clientId
       properties:
         accountType:
           type: string
         accountNumber:
-          type: string
+          type: integer
+          format: int64
         exentGMF:
           type: boolean
         clientId:

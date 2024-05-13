@@ -17,7 +17,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Client'
+              $ref: '#/components/schemas/CreateClient'
         required: true
       responses:
         "200":
@@ -25,12 +25,33 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Client'
+                $ref: '#/components/schemas/CreateClient'
+        "405":
+          description: Invalid input
+    put:
+      tags:
+        - clients
+      summary: Update a existent client
+      description: Update an existent client using full information
+      operationId: updateClient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateClient'
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateClient'
         "405":
           description: Invalid input
 components:
   schemas:
-    Client:
+    CreateClient:
       type: object
       required:
         - idType
@@ -40,6 +61,32 @@ components:
         - email
         - birthDate
       properties:
+        idType:
+          type: string
+        idNumber:
+          type: string
+        names:
+          type: string
+        surnames:
+          type: string
+        email:
+          type: string
+        birthDate:
+          type: string
+    UpdateClient:
+      type: object
+      required:
+        - id
+        - idType
+        - idNumber
+        - names
+        - surnames
+        - email
+        - birthDate
+      properties:
+        id:
+          type: number
+          format: int64
         idType:
           type: string
         idNumber:

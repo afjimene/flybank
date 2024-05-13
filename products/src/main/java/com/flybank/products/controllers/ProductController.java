@@ -7,6 +7,8 @@ import com.flybank.products.services.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
+
 @RestController
 public class ProductController implements ProductApi {
 
@@ -19,8 +21,11 @@ public class ProductController implements ProductApi {
     @Override
     public ResponseEntity<Product> createProduct(Product body) {
         //Map body to product entity
-        var client = productService.createProduct(ProductMapper.INSTANCE.productToProductDto(body));
+        var createProduct = ProductMapper.INSTANCE.productToProductDto(body);
+        //initialize the product with balance zero
+        createProduct.setBalance(new BigDecimal(0));
+        var product = productService.createProduct(createProduct);
         //Map response to product api
-        return ResponseEntity.ok(ProductMapper.INSTANCE.productDtoToProduct(client));
+        return ResponseEntity.ok(ProductMapper.INSTANCE.productDtoToProduct(product));
     }
 }

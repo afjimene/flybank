@@ -1,7 +1,7 @@
 package com.flybank.clients.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.flybank.clients.api.model.Client;
+import com.flybank.clients.api.model.CreateClient;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -21,7 +21,7 @@ class ClientControllerTest {
 
     @Test
     void createClientTestWithMockMvc(@Autowired MockMvc mvc) throws Exception {
-        var client = new Client();
+        var client = new CreateClient();
         client.setIdNumber("1231234");
         client.setIdType("1");
         client.setNames("test1");
