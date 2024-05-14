@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 
@@ -25,6 +27,7 @@ class ClientServiceTest {
         var client = new Client();
         client.setId(12345L);
         client.setNames("test1");
+        client.setBirthDate(LocalDate.of(1980,2,16));
 
         given(repository.save(Mockito.any(Client.class))).willReturn(client);
 

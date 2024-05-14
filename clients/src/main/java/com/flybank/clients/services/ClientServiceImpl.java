@@ -13,9 +13,11 @@ import java.time.Period;
 public class ClientServiceImpl implements ClientService {
 
     private final ClientRepository repository;
+    private final ProductsGateway gateway;
 
-    public ClientServiceImpl(ClientRepository repository) {
+    public ClientServiceImpl(ClientRepository repository, ProductsGateway gateway) {
         this.repository = repository;
+        this.gateway = gateway;
     }
 
     @Override
@@ -41,7 +43,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void deleteClient(Long id) {
-        // TODO: validar si tiene productos
+        var productsResponse = gateway.getProductsResponse(id);
+        if (!productsResponse.getProducts().isEmpty())
+            throw new RuntimeException("Client cannot be removed because have products");
         this.repository.deleteById(id);
     }
 
