@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.context.WebApplicationContext;
+import org.threeten.bp.LocalDate;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -27,7 +28,7 @@ class ClientControllerTest {
         client.setNames("test1");
         client.setSurnames("test2");
         client.setEmail("test@test.com");
-        client.setBirthDate("19800101");
+        client.setBirthDate("1980-02-15");
 
         mvc.perform(MockMvcRequestBuilders
                 .post("/client")
