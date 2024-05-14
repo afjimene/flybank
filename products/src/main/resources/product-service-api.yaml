@@ -1,0 +1,58 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Products
+  description: 'Service to service'
+  contact:
+    email: afjimene@gmail.com
+paths:
+  /service-api/productsByClient/{clientId}:
+    get:
+      tags:
+        - products
+      summary: Find product by clientId
+      description: get a list of product from a client
+      operationId: getProductsByClientId
+      parameters:
+        - name: clientId
+          in: path
+          description: ID of client
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductListResponse'
+        "405":
+          description: Invalid input
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        accountType:
+          type: string
+        accountNumber:
+          type: integer
+          format: int64
+        balance:
+          type: number
+        exentGMF:
+          type: boolean
+        clientId:
+          type: integer
+          format: int64
+    ProductListResponse:
+      type: object
+      required:
+        - products
+      properties:
+        products:
+          type: array
+          description: List of mapped products.
+          items:
+            $ref: '#/components/schemas/Product'

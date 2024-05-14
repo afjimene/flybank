@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -30,5 +31,10 @@ public class ProductServiceImpl implements ProductService {
         }
         product.setStatus(Product.Status.ACTIVE);
         return this.repository.save(product);
+    }
+
+    @Override
+    public List<Product> getProductByClient(Integer clientId) {
+        return this.repository.findByClientId(clientId);
     }
 }

@@ -5,6 +5,9 @@ import com.flybank.clients.repository.ClientRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 @Service
 @Transactional
 public class ClientServiceImpl implements ClientService {
@@ -17,7 +20,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client createClient(Client client) {
-        // TODO: Validar la fecha de nacimiento
+        var years = Period.between(client.getBirthDate(), LocalDate.now()).getYears();
+        if (years < 18)
+            throw new RuntimeException("Client cannot be under-age.");
         if (repository.findByIdTypeAndIdNumber(client.getIdType(), client.getIdNumber()).isPresent())
             throw new RuntimeException("Client already exist.");
         return this.repository.save(client);
@@ -25,6 +30,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client updateClient(Client client) {
+        var years = Period.between(client.getBirthDate(), LocalDate.now()).getYears();
+        if (years < 18)
+            throw new RuntimeException("Client cannot be under-age.");
         var optionalClient = repository.findByIdTypeAndIdNumber(client.getIdType(), client.getIdNumber());
         if (optionalClient.isPresent() && !optionalClient.get().getId().equals(client.getId()))
             throw new RuntimeException("Client already exist with other id.");

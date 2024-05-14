@@ -7,8 +7,6 @@ import com.flybank.products.services.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
-
 @RestController
 public class ProductController implements ProductApi {
 
