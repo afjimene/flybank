@@ -6,6 +6,6 @@ import org.springframework.web.service.annotation.GetExchange;
 
 public interface ProductsGateway {
 
-    @GetExchange("/service-api/productsByClient/{clientId})")
-    ProductListResponse getProductsResponse(@PathVariable Long clientId);
+    @GetExchange("/service-api/productsByClient/{clientId}")
+    ProductListResponse getProductsResponse(@PathVariable long clientId);
 }

@@ -26,6 +26,12 @@ public class ClientController implements ClientApi {
     }
 
     @Override
+    public ResponseEntity<Void> deleteClientById(Long clientId) {
+        clientService.deleteClient(clientId);
+        return ResponseEntity.ok().build();
+    }
+
+    @Override
     public ResponseEntity<UpdateClient> updateClient(UpdateClient body) {
         //Map body to client entity
         var client = clientService.updateClient(ClientMapper.INSTANCE.updateClientToClientDto(body));

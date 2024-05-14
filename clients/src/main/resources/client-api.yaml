@@ -49,6 +49,28 @@ paths:
                 $ref: '#/components/schemas/UpdateClient'
         "405":
           description: Invalid input
+  /client/{clientId}:
+    delete:
+      tags:
+        - client
+      summary: delete client by ID
+      description: delete
+      operationId: deleteClientById
+      parameters:
+        - name: clientId
+          in: path
+          description: ID of client
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: Client not found
 components:
   schemas:
     CreateClient:
@@ -61,6 +83,9 @@ components:
         - email
         - birthDate
       properties:
+        id:
+          type: integer
+          format: int64
         idType:
           type: string
         idNumber:
