@@ -1,8 +1,11 @@
 package com.flybank.products.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "product")
@@ -12,13 +15,17 @@ public class Product {
     Long id;
 
     AccountType accountType;
-    String accountNumber;
+    Long accountNumber;
     Status status;
     BigDecimal balance;
     Boolean exentGMF;
-    String creationDate;
-    String modificationDate;
     Long clientId;
+
+    @CreationTimestamp
+    private LocalDateTime createDateTime;
+
+    @UpdateTimestamp
+    private LocalDateTime updateDateTime;
 
     public enum AccountType {
         SAVING,
@@ -47,11 +54,11 @@ public class Product {
         this.accountType = accountType;
     }
 
-    public String getAccountNumber() {
+    public Long getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(String accountNumber) {
+    public void setAccountNumber(Long accountNumber) {
         this.accountNumber = accountNumber;
     }
 
@@ -77,22 +84,6 @@ public class Product {
 
     public void setExentGMF(Boolean exentGMF) {
         this.exentGMF = exentGMF;
-    }
-
-    public String getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(String creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public String getModificationDate() {
-        return modificationDate;
-    }
-
-    public void setModificationDate(String modificationDate) {
-        this.modificationDate = modificationDate;
     }
 
     public Long getClientId() {

@@ -20,6 +20,7 @@ paths:
           required: true
           schema:
             type: integer
+            format: int64
       responses:
         "200":
           description: Successful operation
@@ -29,6 +30,26 @@ paths:
                 $ref: '#/components/schemas/ProductListResponse'
         "405":
           description: Invalid input
+  /service-api/transaction:
+    post:
+      tag:
+        - products
+      summary: update balance Product
+      description: Update balance in a product
+      operationId: update balance
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+        required: true
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          description: Invalid ID supplied
+        "404":
+          description: product not found
 components:
   schemas:
     Product:
@@ -56,3 +77,20 @@ components:
           description: List of mapped products.
           items:
             $ref: '#/components/schemas/Product'
+    Transaction:
+      type: object
+      required:
+        - accountNumber
+        - transactionType
+        - amount
+      properties:
+        accountNumber:
+          type: integer
+          format: int64
+        transactionType:
+          type: string
+        amount:
+          type: number
+        targetAccount:
+          type: integer
+          format: int64
