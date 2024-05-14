@@ -22,8 +22,6 @@ public class ProductController implements ProductApi {
     public ResponseEntity<Product> createProduct(Product body) {
         //Map body to product entity
         var createProduct = ProductMapper.INSTANCE.productToProductDto(body);
-        //initialize the product with balance zero
-        createProduct.setBalance(new BigDecimal(0));
         var product = productService.createProduct(createProduct);
         //Map response to product api
         return ResponseEntity.ok(ProductMapper.INSTANCE.productDtoToProduct(product));
