@@ -11,7 +11,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.context.WebApplicationContext;
-import org.threeten.bp.LocalDate;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -32,6 +31,7 @@ class ClientControllerTest {
 
         mvc.perform(MockMvcRequestBuilders
                 .post("/client")
+                        //.with(user("user").password("password").roles("USER"))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(new ObjectMapper().writeValueAsString(client)))
                 .andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
