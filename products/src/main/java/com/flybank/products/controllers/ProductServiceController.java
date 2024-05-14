@@ -26,6 +26,7 @@ public class ProductServiceController implements ServiceApiApi {
 
     @Override
     public ResponseEntity<Void> updateBalance(Transaction body) {
-        return null;
+        productService.updateBalance(body);
+        return ResponseEntity.ok().build();
     }
 }

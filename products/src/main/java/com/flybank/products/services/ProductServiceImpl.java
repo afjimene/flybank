@@ -90,6 +90,7 @@ public class ProductServiceImpl implements ProductService {
                 products.add(product);
                 products.add(targetProduct);
                 this.repository.saveAll(products);
+                break;
             default:
                 throw new RuntimeException("Transaction type not supported");
         }

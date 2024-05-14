@@ -6,40 +6,40 @@ info:
   contact:
     email: afjimene@gmail.com
 paths:
-  /withdrawal:
+  /transaction:
     post:
       tags:
         - transactions
       summary: Create a new transaction
       description: Create a new transaction using full information
-      operationId: withdrawal
+      operationId: createTransaction
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Withdrawal'
+              $ref: '#/components/schemas/Transaction'
         required: true
       responses:
-        "200":
+        "201":
           description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Withdrawal'
         "405":
           description: Invalid input
 components:
   schemas:
-    Withdrawal:
+    Transaction:
       type: object
       required:
-        - accountType
         - accountNumber
+        - transactionType
         - amount
       properties:
-        accountType:
-          type: string
         accountNumber:
+          type: integer
+          format: int64
+        transactionType:
           type: string
         amount:
           type: number
+        targetAccount:
+          type: integer
+          format: int64
